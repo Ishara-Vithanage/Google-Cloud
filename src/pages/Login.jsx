@@ -17,8 +17,14 @@ const Login = () => {
 
   return (
     <div className={styles.container}>
+      {/* Header Section */}
+      <header className={styles.header}>
+        <h1>BlogSpot</h1>
+      </header>
+      
+      {/* Login Form */}
       <form className={styles.form} onSubmit={handleSubmit}>
-        <h1 className={styles.title}>Login</h1>
+        <h2 className={styles.title}>Login</h2>
         <div className={styles.inputGroup}>
           <label htmlFor="email" className={styles.label}>Email</label>
           <input
@@ -45,6 +51,23 @@ const Login = () => {
         </div>
         <button type="submit" className={styles.button}>Login</button>
       </form>
+      
+      {/* Login with Google Section */}
+      <div className={styles.googleSection}>
+        <button className={styles.googleButton}>
+          <img
+            src="https://www.svgrepo.com/show/303108/google-icon-logo.svg"
+            alt="Google Logo"
+            className={styles.googleLogo}
+          />
+          Login with Google
+        </button>
+      </div>
+      
+      {/* Footer Section */}
+      <footer className={styles.footer}>
+        <p>&copy; {new Date().getFullYear()} BlogSpot. All rights reserved.</p>
+      </footer>
     </div>
   );
 };
