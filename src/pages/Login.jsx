@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./styles/Login.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -12,8 +13,17 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Login details:", formData);
-    // Add your login logic here
+    const { email, password } = formData;
+    if (email === "admin@admin.com" && password === "admin") {
+      alert("Login successful");
+      navigate("/HomePage");
+    }
+    else {
+      alert("Invalid credentials");
+    }
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className={styles.container}>
