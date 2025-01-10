@@ -38,7 +38,7 @@ const Login = () => {
     e.preventDefault();
     console.log("Login details:", formData);
     const { email, password } = formData;
-    if (email === "admin@admin.com" && password === "admin") {
+    if (email === "isharaharshana06@gmail.com" && password === "admin") {
       alert("Login successful");
       navigate("/HomePage");
     } else {
@@ -98,13 +98,16 @@ const Login = () => {
           onSuccess={handleSuccess}
           onFailure={handleFailure}
           cookiePolicy="single_host_origin"
-          redirectUri="https://localhost:3000" 
+          redirectUri="https://localhost:3000/HomePage" 
         />
       </div>
 
       {/* Footer Section */}
       <footer className={styles.footer}>
         <p>&copy; {new Date().getFullYear()} BlogSpot. All rights reserved.</p>
+        <p>Don't have an account ?
+          <button className={styles.signup} onClick={() => navigate("/Signup")}>Sign Up</button>
+        </p>
       </footer>
     </div>
   </GoogleOAuthProvider>

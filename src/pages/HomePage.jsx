@@ -41,6 +41,11 @@ const Login = () => {
     }
   };
 
+  const handleSignup = (e) => {
+    e.preventDefault();
+    navigate("/Signup");
+  };
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -87,7 +92,9 @@ const Login = () => {
       </div>
 
       <footer className={styles.footer}>
-        <p>&copy; {new Date().getFullYear()} BlogSpot. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} BlogSpot. All rights reserved. Don't have an account ?. 
+          <button className={styles.register} onClick={handleSignup}>Register</button>
+        </p>
       </footer>
     </div>
   );

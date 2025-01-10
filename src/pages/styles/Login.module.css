@@ -105,3 +105,11 @@
   text-align: center;
   color: #888888;
 }
+
+.signup {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  color: #ff5722;
+  text-decoration: none;
+}
