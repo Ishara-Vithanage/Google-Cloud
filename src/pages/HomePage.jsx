@@ -1,70 +1,91 @@
-import React from "react";
-import styles from "./styles/HomePage.module.css";
+import React, { useEffect, useState } from "react";
+import styles from "./styles/Login.module.css";
 import { useNavigate } from "react-router-dom";
+import { GoogleLogin } from 'react-google-login';
 
-const HomePage = () => {
-  const blogs = [
-    {
-      id: 1,
-      title: "The Rise of Artificial Intelligence",
-      author: "John Doe",
-      date: "January 5, 2025",
-      snippet: "Exploring the potential and challenges of AI in modern society.",
-    },
-    {
-      id: 2,
-      title: "The Art of Minimalism",
-      author: "Jane Smith",
-      date: "December 20, 2024",
-      snippet: "Discover how living with less can lead to more happiness.",
-    },
-    {
-      id: 3,
-      title: "Traveling the World on a Budget",
-      author: "Alex Brown",
-      date: "November 15, 2024",
-      snippet: "Tips and tricks to see the world without breaking the bank.",
-    },
-  ];
-
+const Login = () => {
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    alert("You have been logged out");
-    navigate("/");
-  }
+  const handleSuccess = (response) => {
+    console.log("Login Successful:", response.profileObj);
+    // Store user data in localStorage
+    localStorage.setItem("user", JSON.stringify(response.profileObj));
+    // Redirect to homepage
+    navigate("/HomePage");
+  };
+
+  const handleFailure = (response) => {
+    console.error("Google Login Error:", response);
+    alert("Google Login Failed. Please check your configuration and try again.");
+  };
+
+  useEffect(() => {
+    document.title = "BlogSpot - Login";
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Login details:", formData);
+    const { email, password } = formData;
+    if (email === "admin@admin.com" && password === "admin") {
+      alert("Login successful");
+      navigate("/HomePage");
+    } else {
+      alert("Invalid credentials");
+    }
+  };
 
   return (
     <div className={styles.container}>
-      {/* Header Section */}
       <header className={styles.header}>
-        <h1 className={styles.logo}>BlogSpot</h1>
-        <nav className={styles.nav}>
-          <button className={styles.navButton}>Home</button>
-          <button className={styles.navButton}>About</button>
-          <button className={styles.navButton}>Contact</button>
-          <button className={styles.navButton}>Create Blog</button>
-          <button onClick={handleLogout} className={styles.navButton}>Logout</button>
-        </nav>
+        <h1>BlogSpot</h1>
       </header>
 
-      {/* Main Content */}
-      <main className={styles.main}>
-        <h2 className={styles.heading}>Featured Blogs</h2>
-        <div className={styles.blogList}>
-          {blogs.map((blog) => (
-            <article key={blog.id} className={styles.blogCard}>
-              <h3 className={styles.blogTitle}>{blog.title}</h3>
-              <p className={styles.blogMeta}>
-                By <span className={styles.blogAuthor}>{blog.author}</span> on {blog.date}
-              </p>
-              <p className={styles.blogSnippet}>{blog.snippet}</p>
-            </article>
-          ))}
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <h2 className={styles.title}>Login</h2>
+        <div className={styles.inputGroup}>
+          <label htmlFor="email" className={styles.label}>Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className={styles.input}
+            required
+          />
         </div>
-      </main>
+        <div className={styles.inputGroup}>
+          <label htmlFor="password" className={styles.label}>Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            className={styles.input}
+            required
+          />
+        </div>
+        <button type="submit" className={styles.button}>Login</button>
+      </form>
 
-      {/* Footer Section */}
+      <div className={styles.googleSection}>
+        <GoogleLogin
+          clientId="YOUR_CLIENT_ID_HERE" // Replace with your Google Client ID
+          buttonText="Login with Google"
+          onSuccess={handleSuccess}
+          onFailure={handleFailure}
+          cookiePolicy="single_host_origin"
+        />
+      </div>
+
       <footer className={styles.footer}>
         <p>&copy; {new Date().getFullYear()} BlogSpot. All rights reserved.</p>
       </footer>
@@ -72,4 +93,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Login;
