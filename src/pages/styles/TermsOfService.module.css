@@ -1,0 +1,83 @@
+/* TermsOfService.module.css */
+
+.container {
+  background-color: #121212;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.logo {
+  font-size: 24px;
+  color: #ff5722;
+}
+
+.nav {
+  display: flex;
+  gap: 15px;
+}
+
+.navButton {
+  color: #ffffff;
+  background-color: transparent;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: none;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.navButton:hover {
+  color: #ff5722;
+}
+
+.main {
+  flex: 1;
+  margin-top: 20px;
+}
+
+.heading {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #ff5722;
+}
+
+.subheading {
+  font-size: 22px;
+  margin: 15px 0;
+  color: #ffffff;
+}
+
+.text {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #cccccc;
+}
+
+.list {
+  padding-left: 20px;
+  list-style-type: disc;
+  color: #cccccc;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.footer {
+  text-align: center;
+  font-size: 12px;
+  color: #888888;
+  padding: 10px 0;
+}
